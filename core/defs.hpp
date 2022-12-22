@@ -2,9 +2,9 @@
 #define FILE_ENCODER_DEFS_HPP
 
 //region output helpers
-#define INFO(msg)    std::cout << "\033[46;37m" "[INFO]:"    "\033[0;36m " msg "\033[0m" << std::endl
-#define WARNING(msg) std::cout << "\033[43;37m" "[WARNING]:" "\033[0;33m " msg "\033[0m" << std::endl
-#define ERROR(msg)   std::cout << "\033[41;37m" "[ERROR]:"   "\033[0;31m " msg "\033[0m" << std::endl
+#define INFO(msg)    std::cout << "\033[46;97m" "[INFO]:"    "\033[0;36m " msg "\033[0m" << std::endl
+#define WARNING(msg) std::cout << "\033[43;97m" "[WARNING]:" "\033[0;33m " msg "\033[0m" << std::endl
+#define ERROR(msg)   std::cout << "\033[41;97m" "[ERROR]:"   "\033[0;31m " msg "\033[0m" << std::endl
 //endregion
 
 //region exit codes
