@@ -7,7 +7,7 @@
 #include <iostream>
 #include <deque>
 #include <defs.hpp>
-#include <boost/filesystem.hpp>
+#include <boost/filesystem/path.hpp>
 
 using namespace std;
 using boost::filesystem::path;
