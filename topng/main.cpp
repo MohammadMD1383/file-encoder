@@ -10,6 +10,7 @@ using namespace boost::gil;
 uint32_t findBestDivisor(uint64_t n);
 
 int main() {
+	INIT_BINARY_IO;
 	INFO("Reading Input");
 	deque<unsigned char> input;
 	int inp;
@@ -29,8 +30,8 @@ int main() {
 	gray8_view_t imageView = view(image);
 	
 	INFO("Painting");
-	for (::uint32_t i = 0; i < width; i++) {
-		for (::uint32_t j = 0; j < height; j++) {
+	for (::uint32_t i = 0; i < height; i++) {
+		for (::uint32_t j = 0; j < width; j++) {
 			imageView(i, j) = input[i * width + j];
 		}
 	}
