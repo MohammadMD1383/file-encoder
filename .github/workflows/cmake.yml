@@ -7,7 +7,6 @@ on:
     - '*'
 
 env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
   CMAKE_INSTALL_PREFIX: inst
 
@@ -15,7 +14,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -27,6 +26,16 @@ jobs:
       with:
         version: 1.81.0
         libraries: filesystem
+        
+    - name: Setup macos dependencies
+      if: runner.os == 'macOS'
+      run: brew install libpng
+      shell: bash
+      
+    - name: Setup windows dependencies
+      if: runner.os == 'Windows'
+      run: echo Hello
+      shell: cmd
 
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_INSTALL_PREFIX=${{env.CMAKE_INSTALL_PREFIX}} -D "BOOST_ROOT=${{ steps.boost.outputs.root }}" -D "BOOST_LIBRARYDIR=${{ steps.boost.outputs.librarydir }}"
@@ -34,8 +43,8 @@ jobs:
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target install
 
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+#    - name: Setup tmate session
+#      uses: mxschmitt/action-tmate@v3
 
     - name: Release
       uses: fnkr/github-action-ghr@v1
