@@ -11,7 +11,8 @@ uint32_t findBestDivisor(uint64_t n);
 
 int main() {
 	INIT_BINARY_IO;
-	INFO("Reading Input");
+	
+	INFO("Reading input");
 	deque<unsigned char> input;
 	int inp;
 	while (true) {
@@ -25,19 +26,19 @@ int main() {
 	auto width = findBestDivisor(length);
 	auto height = static_cast<uint32_t>(length / width);
 	
-	INFO("Creating Image");
+	INFO("Creating image");
 	gray8_image_t image{width, height};
 	gray8_view_t imageView = view(image);
 	
-	INFO("Painting");
+	INFO("Painting image");
 	for (::uint32_t i = 0; i < height; i++) {
 		for (::uint32_t j = 0; j < width; j++) {
 			imageView(j, i) = input[i * width + j];
 		}
 	}
 	
-	INFO("Writing");
-	write_view("image.png", imageView, png_tag());
+	INFO("Writing output");
+	write_view(cout, imageView, png_tag());
 	EXIT_OK;
 }
 
