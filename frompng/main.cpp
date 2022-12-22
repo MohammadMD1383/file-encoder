@@ -27,7 +27,7 @@ int main() {
 	ofstream outputFile{"file.exe", ios_base::binary};
 	for (::uint32_t i = 0; i < image.height(); i++) {
 		for (::uint32_t j = 0; j < image.width(); j++) {
-			outputFile.put(reinterpret_cast<char&>(imageView(i, j)));
+			outputFile.put(reinterpret_cast<char&>(imageView(j, i)));
 		}
 	}
 	outputFile.close();

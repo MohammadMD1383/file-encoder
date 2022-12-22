@@ -32,7 +32,7 @@ int main() {
 	INFO("Painting");
 	for (::uint32_t i = 0; i < height; i++) {
 		for (::uint32_t j = 0; j < width; j++) {
-			imageView(i, j) = input[i * width + j];
+			imageView(j, i) = input[i * width + j];
 		}
 	}
 	
