@@ -49,5 +49,5 @@ jobs:
     - name: Release
       uses: fnkr/github-action-ghr@v1
       env:
-        GHR_PATH: ${{ github.workspace }}/build/inst/bin/
+        GHR_PATH: build/inst/bin/
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
