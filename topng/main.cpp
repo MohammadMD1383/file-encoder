@@ -7,46 +7,45 @@
 using namespace std;
 using namespace boost::gil;
 
-deque<uint32_t> findDivisors(uint64_t n);
+uint32_t findBestDivisor(uint64_t n);
 
 int main() {
+	INFO("Reading Input");
 	deque<unsigned char> input;
-	int i;
+	int inp;
 	while (true) {
-		i = cin.get();
+		inp = cin.get();
 		if (cin.eof()) break;
-		input.push_back(i);
+		input.push_back(inp);
 	}
 	
+	INFO("Calculating");
 	auto length = input.size();
-	auto divisors = findDivisors(length);
-	auto width = divisors[divisors.size() / 2];
-	auto height = static_cast<int64_t>(length / width);
+	auto width = findBestDivisor(length);
+	auto height = static_cast<uint32_t>(length / width);
 	
+	INFO("Creating Image");
 	gray8_image_t image{width, height};
 	gray8_view_t imageView = view(image);
 	
-	for (int64_t p = 0; p < length; p++) {
-		imageView(p % width, p / width) = input[p];
+	INFO("Painting");
+	for (::uint32_t i = 0; i < width; i++) {
+		for (::uint32_t j = 0; j < height; j++) {
+			imageView(i, j) = input[i * width + j];
+		}
 	}
 	
+	INFO("Writing");
 	write_view("image.png", imageView, png_tag());
 	EXIT_OK;
 }
 
-deque<uint32_t> findDivisors(uint64_t n) {
-	deque<uint32_t> divisors;
-	
-	for (uint32_t i = 1; i <= sqrt(n); i++) {
+uint32_t findBestDivisor(uint64_t n) {
+	for (uint32_t i = floor(sqrt(n)); i > 1; i--) {
 		if (n % i == 0) {
-			if (n / i == i) {
-				divisors.push_back(i);
-			} else {
-				divisors.push_back(i);
-				divisors.push_back(n / i);
-			}
+			return i;
 		}
 	}
 	
-	return divisors;
+	return 1;
 }
