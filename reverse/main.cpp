@@ -7,6 +7,7 @@
 #include <iostream>
 #include <deque>
 #include <defs.hpp>
+#include <cstring>
 #include <boost/filesystem/path.hpp>
 
 using namespace std;

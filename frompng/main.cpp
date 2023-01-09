@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <cstring>
 #include <defs.hpp>
 #include <boost/gil.hpp>
 #include <boost/gil/extension/io/png.hpp>
